@@ -1,0 +1,29 @@
+import java.util.concurrent.TimeUnit;
+
+public class CountdownTimer {
+    public static void main(String[] args) {
+        // Set the countdown time in seconds (e.g., 5 minutes)
+        int countdownTime = 300;
+
+        countdownTimer(countdownTime);
+    }
+
+    public static void countdownTimer(int seconds) {
+        while (seconds > 0) {
+            long minutes = TimeUnit.SECONDS.toMinutes(seconds);
+            long remainingSeconds = seconds % 60;
+
+            System.out.printf("%02d:%02d%n", minutes, remainingSeconds);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            seconds--;
+        }
+
+        System.out.println("Time's up!");
+    }
+}
