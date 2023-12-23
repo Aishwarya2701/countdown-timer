@@ -1,0 +1,25 @@
+using System;
+using System.Threading;
+
+class Program
+{
+    static void Main()
+    {
+        // Set the countdown time in seconds (e.g., 5 minutes)
+        int countdownTime = 300;
+
+        CountdownTimer(countdownTime);
+    }
+
+    static void CountdownTimer(int seconds)
+    {
+        while (seconds > 0)
+        {
+            Console.WriteLine($"{seconds / 60:D2}:{seconds % 60:D2}");
+            Thread.Sleep(1000);
+            seconds--;
+        }
+
+        Console.WriteLine("Time's up!");
+    }
+}
