@@ -1,0 +1,69 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Countdown Timer',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int countdownTime = 300; // Set the countdown time in seconds (e.g., 5 minutes)
+  late Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+      setState(() {
+        if (countdownTime < 1) {
+          timer.cancel();
+        } else {
+          countdownTime--;
+        }
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Countdown Timer'),
+      ),
+      body: Center(
+        child: Text(
+          '${(countdownTime ~/ 60).toString().padLeft(2, '0')}:${(countdownTime % 60).toString().padLeft(2, '0')}',
+          style: TextStyle(fontSize: 48),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+}
