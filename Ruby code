@@ -1,0 +1,13 @@
+def countdown_timer(seconds)
+  while seconds > 0
+    printf("%02d:%02d\n", seconds / 60, seconds % 60)
+    sleep(1)
+    seconds -= 1
+  end
+  puts "Time's up!"
+end
+
+# Set the countdown time in seconds (e.g., 5 minutes)
+countdown_time = 300
+
+countdown_timer(countdown_time)
