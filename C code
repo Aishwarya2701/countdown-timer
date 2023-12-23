@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <unistd.h>
+
+void countdownTimer(int seconds) {
+    while (seconds > 0) {
+        printf("%02d:%02d\n", seconds / 60, seconds % 60);
+        sleep(1);
+        seconds--;
+    }
+    printf("Time's up!\n");
+}
+
+int main() {
+    // Set the countdown time in seconds (e.g., 5 minutes)
+    int countdownTime = 300;
+
+    countdownTimer(countdownTime);
+
+    return 0;
+}
